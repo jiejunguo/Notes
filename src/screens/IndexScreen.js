@@ -10,7 +10,7 @@ import {
 import { Context } from "../context/NoteContext";
 import { FontAwesome } from "@expo/vector-icons";
 
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
   const { state, addNote, deleteNote } = useContext(Context);
   return (
     <View>
@@ -19,17 +19,21 @@ const IndexScreen = () => {
         keyExtractor={(data) => data.title}
         renderItem={({ item }) => {
           return (
-            <View style={styles.row}>
-              <Text style={styles.title}>{item.title}</Text>
-              <TouchableOpacity onPress={() => deleteNote(item.id)}>
-                <FontAwesome
-                  name="trash-o"
-                  size={24}
-                  color="black"
-                  style={styles.button}
-                />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Show", { id: item.id })}
+            >
+              <View style={styles.row}>
+                <Text style={styles.title}>{item.title}</Text>
+                <TouchableOpacity onPress={() => deleteNote(item.id)}>
+                  <FontAwesome
+                    name="trash-o"
+                    size={24}
+                    color="black"
+                    style={styles.button}
+                  />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
