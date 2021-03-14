@@ -12,7 +12,8 @@ const noteReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 99999),
-          title: `Note #${state.length + 1}`,
+          title: action.payload.title,
+          content: action.payload.content,
         },
       ];
     default:
@@ -20,8 +21,8 @@ const noteReducer = (state, action) => {
   }
 };
 const addNote = (dispatch) => {
-  return () => {
-    dispatch({ type: "add_note" });
+  return (title, content) => {
+    dispatch({ type: "add_note", payload: { title, content } });
   };
 };
 
