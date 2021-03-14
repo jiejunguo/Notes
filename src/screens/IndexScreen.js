@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, FlatList, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { Context } from "../context/NoteContext";
 import { FontAwesome } from "@expo/vector-icons";
 
 const IndexScreen = () => {
-  const { state, addNote } = useContext(Context);
+  const { state, addNote, deleteNote } = useContext(Context);
   return (
     <View>
       <FlatList
@@ -14,12 +21,14 @@ const IndexScreen = () => {
           return (
             <View style={styles.row}>
               <Text style={styles.title}>{item.title}</Text>
-              <FontAwesome
-                name="trash-o"
-                size={24}
-                color="black"
-                style={styles.button}
-              />
+              <TouchableOpacity onPress={() => deleteNote(item.id)}>
+                <FontAwesome
+                  name="trash-o"
+                  size={24}
+                  color="black"
+                  style={styles.button}
+                />
+              </TouchableOpacity>
             </View>
           );
         }}
