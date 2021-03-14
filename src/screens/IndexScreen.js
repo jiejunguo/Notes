@@ -13,13 +13,23 @@ const IndexScreen = () => {
         renderItem={({ item }) => {
           return (
             <View style={styles.row}>
-              <Text>{item.title}</Text>
-              <FontAwesome name="trash-o" size={24} color="black" />
+              <Text style={styles.title}>{item.title}</Text>
+              <FontAwesome
+                name="trash-o"
+                size={24}
+                color="black"
+                style={styles.button}
+              />
             </View>
           );
         }}
       />
-      <Button title="Add Note" onPress={addNote} />
+      <Button
+        title="Add Note"
+        onPress={addNote}
+        size={24}
+        style={styles.button}
+      />
     </View>
   );
 };
@@ -28,7 +38,15 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    borderTopWidth: 1,
+    borderColor: "grey",
   },
+  title: {
+    fontSize: 18,
+  },
+  button: {},
 });
 
 export default IndexScreen;
