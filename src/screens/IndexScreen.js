@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 import NoteContext from "../context/NoteContext";
 
 const IndexScreen = () => {
-  const { data, addNotes } = useContext(NoteContext);
+  const { data, addNote } = useContext(NoteContext);
   return (
     <View>
       <Text>Index Screen</Text>
-      <Button title="Add Note" onPress={addNotes} />
+      <Button title="Add Note" onPress={addNote} />
       <FlatList
         data={data}
         keyExtractor={(data) => data.title}
