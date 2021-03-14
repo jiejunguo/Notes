@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import createDataContext from "./createDataContext";
 
 const NoteContext = React.createContext();
 
@@ -10,18 +11,14 @@ const noteReducer = (state, action) => {
       return state;
   }
 };
-
-export const NoteProvider = ({ children }) => {
-  const [notes, dispatch] = useReducer(noteReducer, []);
-
-  const addNote = () => {
+const addNote = (dispatch) => {
+  return () => {
     dispatch({ type: "add_note" });
   };
-
-  return (
-    <NoteContext.Provider value={{ data: notes, addNote }}>
-      {children}
-    </NoteContext.Provider>
-  );
 };
-export default NoteContext;
+
+export const { Context, Provider } = createDataContext(
+  noteReducer,
+  { addNote },
+  []
+);

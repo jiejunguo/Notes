@@ -2,7 +2,7 @@ import React from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import IndexScreen from "./src/screens/IndexScreen";
-import { NoteProvider } from "./src/context/NoteContext";
+import { Provider } from "./src/context/NoteContext";
 
 const navigator = createStackNavigator(
   {
@@ -20,8 +20,8 @@ const App = createAppContainer(navigator);
 
 export default () => {
   return (
-    <NoteProvider>
+    <Provider>
       <App />
-    </NoteProvider>
+    </Provider>
   );
 };

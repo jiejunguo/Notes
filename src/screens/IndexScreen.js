@@ -1,24 +1,34 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, FlatList, Button } from "react-native";
-import NoteContext from "../context/NoteContext";
+import { Context } from "../context/NoteContext";
+import { FontAwesome } from "@expo/vector-icons";
 
 const IndexScreen = () => {
-  const { data, addNote } = useContext(NoteContext);
+  const { state, addNote } = useContext(Context);
   return (
     <View>
-      <Text>Index Screen</Text>
-      <Button title="Add Note" onPress={addNote} />
       <FlatList
-        data={data}
+        data={state}
         keyExtractor={(data) => data.title}
         renderItem={({ item }) => {
-          return <Text>{item.title}</Text>;
+          return (
+            <View style={styles.row}>
+              <Text>{item.title}</Text>
+              <FontAwesome name="trash-o" size={24} color="black" />
+            </View>
+          );
         }}
       />
+      <Button title="Add Note" onPress={addNote} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+});
 
 export default IndexScreen;
