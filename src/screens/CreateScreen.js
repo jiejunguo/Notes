@@ -1,12 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, TextInput, StyleSheet, Button } from "react-native";
 import { Context } from "../context/NoteContext";
 
 const CreateScreen = ({ navigation }) => {
@@ -19,16 +12,23 @@ const CreateScreen = ({ navigation }) => {
       <TextInput
         style={styles.titleInput}
         placeholder="Input Title Here"
-        oonChangeText={(text) => setTitle(text)}
+        onChangeText={(text) => setTitle(text)}
         value={title}
       />
       <TextInput
         style={styles.contentInput}
         placeholder="Content"
-        oonChangeText={(content) => setContent(content)}
+        onChangeText={(content) => setContent(content)}
         value={content}
       />
-      <Button title="Add Note" onPress={() => addNote(title, content)} />
+      <Button
+        title="Add Note"
+        onPress={() =>
+          addNote(title, content, () => {
+            navigation.navigate("Index");
+          })
+        }
+      />
     </View>
   );
 };
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   contentInput: {
-    height: 60,
+    height: 200,
     fontSize: 18,
     borderWidth: 1,
     borderColor: "grey",

@@ -21,8 +21,9 @@ const noteReducer = (state, action) => {
   }
 };
 const addNote = (dispatch) => {
-  return (title, content) => {
+  return (title, content, callback) => {
     dispatch({ type: "add_note", payload: { title, content } });
+    callback();
   };
 };
 
