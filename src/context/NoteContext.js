@@ -6,7 +6,7 @@ const NoteContext = React.createContext();
 const noteReducer = (state, action) => {
   switch (action.type) {
     case "delete_note":
-      return state.filter((note) => note.id !== action.payload);
+      return state.filter((note) => note.id === action.payload);
     case "add_note":
       return [
         ...state,
