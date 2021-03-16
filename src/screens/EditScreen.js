@@ -1,48 +1,25 @@
-import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
 import { Context } from "../context/NoteContext";
+import NoteContentForm from "../components/NoteContentForm";
 
 const EditScreen = ({ navigation }) => {
-  const { state } = useContext(Context);
+  const id = navigation.getParam("id");
+  const { state, editNote } = useContext(Context);
   const noteToEdit = state.find(
     (noteToEdit) => noteToEdit.id === navigation.getParam("id")
   );
-  const [title, setTitle] = useState(noteToEdit.title);
-  const [content, setContent] = useState(noteToEdit.content);
 
   return (
-    <View>
-      <TextInput
-        style={styles.titleInput}
-        placeholder="Input Title Here"
-        onChangeText={(text) => setTitle(text)}
-        value={title}
-      />
-      <TextInput
-        style={styles.contentInput}
-        placeholder="Content"
-        onChangeText={(content) => setContent(content)}
-        value={content}
-      />
-    </View>
+    <NoteContentForm
+      initialValues={{ title: noteToEdit.title, content: noteToEdit.content }}
+      onSubmit={(title, content) => {
+        editNote(id, title, content, () => navigation.navigate("Index"));
+      }}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  titleInput: {
-    height: 60,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "grey",
-    paddingLeft: 20,
-  },
-  contentInput: {
-    height: 200,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "grey",
-    paddingLeft: 20,
-  },
-});
+const styles = StyleSheet.create();
 
 export default EditScreen;

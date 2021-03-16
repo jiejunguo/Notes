@@ -1,35 +1,17 @@
-import React, { useState, useContext } from "react";
-import { View, TextInput, StyleSheet, Button } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
 import { Context } from "../context/NoteContext";
+import NoteContentForm from "../components/NoteContentForm";
 
 const CreateScreen = ({ navigation }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const { addNote } = useContext(Context);
 
   return (
-    <View>
-      <TextInput
-        style={styles.titleInput}
-        placeholder="Input Title Here"
-        onChangeText={(text) => setTitle(text)}
-        value={title}
-      />
-      <TextInput
-        style={styles.contentInput}
-        placeholder="Content"
-        onChangeText={(content) => setContent(content)}
-        value={content}
-      />
-      <Button
-        title="Add Note"
-        onPress={() =>
-          addNote(title, content, () => {
-            navigation.navigate("Index");
-          })
-        }
-      />
-    </View>
+    <NoteContentForm
+      onSubmit={(title, content) => {
+        addNote(title, content, () => navigation.navigate("Index"));
+      }}
+    />
   );
 };
 

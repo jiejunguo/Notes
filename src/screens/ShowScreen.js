@@ -9,8 +9,8 @@ const ShowScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text>{note.title}</Text>
-      <Text>{note.content}</Text>
+      <Text style={styles.title}>{note.title}</Text>
+      <Text style={styles.content}>{note.content}</Text>
     </View>
   );
 };
@@ -29,6 +29,21 @@ ShowScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    height: 60,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: "grey",
+    padding: 10,
+  },
+  content: {
+    height: 200,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: "grey",
+    paddingLeft: 20,
+  },
+});
 
 export default ShowScreen;
