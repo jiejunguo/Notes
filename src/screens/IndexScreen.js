@@ -20,7 +20,7 @@ const IndexScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
-              onPress={() => navigation.navigate("Show", { id: item.id })}
+              onPress={() => navigation.navigate("Edit", { id: item.id })}
             >
               <View style={styles.row}>
                 <Text style={styles.title}>{item.title}</Text>
@@ -55,8 +55,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 15,
-    borderTopWidth: 1,
     borderColor: "grey",
+    backgroundColor: "deepskyblue",
+    borderRadius: 10,
+    marginHorizontal: 2,
+    marginVertical: 1,
+    shadowColor: "grey",
   },
   title: {
     fontSize: 18,

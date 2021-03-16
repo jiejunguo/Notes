@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderWidth: 1,
     borderColor: "grey",
-    paddingLeft: 20,
+    padding: 10,
   },
 });
 

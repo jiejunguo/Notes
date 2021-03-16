@@ -15,7 +15,7 @@ const noteReducer = (state, action) => {
         // }
       });
     case "delete_note":
-      return state.filter((note) => note.id === action.payload);
+      return state.filter((note) => note.id !== action.payload);
     case "add_note":
       return [
         ...state,
